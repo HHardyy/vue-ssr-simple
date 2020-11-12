@@ -4,9 +4,10 @@
   "description": "ssr",
   "main": "index.js",
   "scripts": {
-    "client:build": "webpack --config config/webpack.client.js",
+    "client:build": "webpack --config config/webpack.client.js --watch",
     "client:dev": "webpack-dev-server --config config/webpack.client.js",
-    "server:build": "webpack --config config/webpack.server.js"
+    "server:build": "webpack --config config/webpack.server.js --watch",
+    "all": "concurrently \"npm run client:build\" \"npm run server:build\""
   },
   "keywords": [
     "ssr"
@@ -18,9 +19,11 @@
     "@babel/preset-env": "^7.12.1",
     "@koa/router": "^10.0.0",
     "babel-loader": "^8.1.0",
+    "concurrently": "^5.3.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^4.5.0",
     "koa": "^2.13.0",
+    "koa-static": "^5.0.0",
     "nodemon": "^2.0.6",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.5",

@@ -1,0 +1,31 @@
+{
+  "publicPath": "",
+  "all": [
+    "client.boundle.js",
+    "index.client.html"
+  ],
+  "initial": [
+    "client.boundle.js"
+  ],
+  "async": [],
+  "modules": {
+    "3a25134b": [
+      0
+    ],
+    "dc04f4ea": [
+      0
+    ],
+    "df07b692": [
+      0
+    ],
+    "682aa893": [
+      0
+    ],
+    "cebacbcc": [
+      0
+    ],
+    "7b08e21a": [
+      0
+    ]
+  }
+}

@@ -7,6 +7,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const mergeWebpack = require('webpack-merge')
+const VueSSRClientplugin = require('vue-server-renderer/client-plugin')
 
 const webpackBaseConfig = require('./webpack.base')
 
@@ -19,6 +20,7 @@ module.exports = mergeWebpack.merge(webpackBaseConfig, {
       template: path.resolve(__dirname, '../public/index.client.html'),
       filename: 'index.client.html',
       minify: false
-    })
+    }),
+    new VueSSRClientplugin()
   ]
 })

@@ -5,7 +5,7 @@
  * @Descripttion: 
 -->
 <template>
-  <div @click="handleClickBar">Bar.vue</div>
+  <div style="color: red;" @click="handleClickBar">Bar.vue</div>
 </template>
 
 <script>

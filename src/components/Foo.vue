@@ -5,7 +5,7 @@
  * @Descripttion: 
 -->
 <template>
-  <div @click="handleClickFoo">Foo.vue</div>
+  <div style="color: green" @click="handleClickFoo">Foo.vue</div>
 </template>
 
 <script>

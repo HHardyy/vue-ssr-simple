@@ -7,6 +7,7 @@
 const path = require('path')
 const mergeWebpack = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueServerSSRPlugoin = require('vue-server-renderer/server-plugin')
 
 const webpackBaseConfig = require('./webpack.base')
 
@@ -24,6 +25,7 @@ module.exports = mergeWebpack.merge(webpackBaseConfig, {
       template: path.resolve(__dirname, '../public/index.ssr.html'),
       filename: 'index.ssr.html',
       excludeChunks: ['server'] // 不自动引入
-    })
+    }),
+    new VueServerSSRPlugoin()
   ]
 })

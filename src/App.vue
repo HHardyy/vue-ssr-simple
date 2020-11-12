@@ -5,7 +5,8 @@
  * @Descripttion: 
 -->
 <template>
-  <div>
+ <!-- 因为服务端渲染的时候，server.boundle.js找不到app挂载 -->
+  <div id="app"> 
     <h1>App.vue</h1>
     <hr />
     <Bar />
