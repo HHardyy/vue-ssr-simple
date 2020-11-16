@@ -15,10 +15,6 @@ const Vue = require('vue')
 const server = new Koa()
 const router = new Router()
 
-server.use(router.routes())
-// 静态服务中间件
-server.use(koaStatic(path.resolve(__dirname, 'dist')))
-
 // const boundle = fs.readFileSync('./dist/server.boundle.js', 'utf8')
 const template = fs.readFileSync('./public/index.ssr.html', 'utf8')
 
@@ -33,11 +29,31 @@ const render = VueServerRenderer.createBundleRenderer(boundle, { template, clien
 router.get('/', async ctx => { 
   // 如果渲染的内容需要增加样式，需要使用回调的方式
   ctx.body = await new Promise((resolve, reject) => {
-    render.renderToString((err, html) => {
+    render.renderToString({url: ctx.path}, (err, html) => {
+      if (err && err.code === 404) {
+        resolve('pages noe font')
+      }
       resolve(html)
     })
   })
 })
+
+// history 模式下请求资源404解决 (注意：写成router.get('*')的话， 在use的时候会被错误地设置(.*)为所有嵌套了.use的路由器的前缀，它没有传递一个显式的前缀字符串作为第一个参数。这导致匹配了不应该匹配的路由，包括错误地运行多个路由处理程序。)
+// github issues: https://github.com/ZijianHe/koa-router/issues/527
+router.get('(.*)', async ctx => {
+  ctx.body = await new Promise((resolve, reject) => {
+    render.renderToString({url: ctx.path}, (err, html) => {
+      if (err && err.code === 404) {
+        resolve('pages noe font')
+      }
+      resolve(html)
+    })
+  })
+})
+
+// 静态服务中间件
+server.use(koaStatic(path.resolve(__dirname, 'dist')))
+server.use(router.routes())
 
 server.listen(10086)
 

@@ -6,14 +6,15 @@
  */
 import Vue from 'vue'
 import App from './App.vue'
+import createRoutes from './createRoutes'
 
 export default () => {
+  const router = createRoutes()
   const app = new Vue({
     el: '#app',
+    router,
     render: h => h(App)
   })
 
-  return {
-    app
-  }
+  return { app, router }
 }

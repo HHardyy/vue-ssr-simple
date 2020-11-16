@@ -8,10 +8,14 @@
  <!-- 因为服务端渲染的时候，server.boundle.js找不到app挂载 -->
   <div id="app"> 
     <h1>App.vue</h1>
-    <hr />
+
+    <router-link to="/">foo</router-link>
+    <router-link to="/bar">bar</router-link>
+    <router-view></router-view>
+    <!-- <hr />
     <Bar />
     <hr />
-    <Foo />
+    <Foo /> -->
   </div>
 </template>
 
