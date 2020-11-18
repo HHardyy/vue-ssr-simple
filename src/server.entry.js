@@ -11,7 +11,7 @@ import createApp from './app';
 export default (ctx) => {
   // 可能在路由跳转之前，路由注册表对应的组件还没被渲染
   return new Promise((resolve, reject) => {
-    let { app, router } = createApp();
+    let { app, router, store } = createApp();
     // 跳路由
     router.push(ctx.url)
 
@@ -19,9 +19,14 @@ export default (ctx) => {
       // 跳路由之后匹配路径是否存在
     const matchs = router.getMatchedComponents()
 
-    if (!matchs.length) return reject({ code: 404 }) 
+    if (!matchs.length) return reject({ code: 404 })
 
+    Promise.all(matchs.map(component => {
+      if (component.asyncData) return component.asyncData(store)
+    })).then(() => {
+      ctx.state = store.state
       resolve(app)
+    })
     }, reject)
   })
 }

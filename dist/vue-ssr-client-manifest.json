@@ -1,8 +1,7 @@
 {
   "publicPath": "",
   "all": [
-    "client.boundle.js",
-    "index.client.html"
+    "client.boundle.js"
   ],
   "initial": [
     "client.boundle.js"
@@ -31,6 +30,9 @@
       0
     ],
     "cebacbcc": [
+      0
+    ],
+    "f90ac9c6": [
       0
     ],
     "7b08e21a": [

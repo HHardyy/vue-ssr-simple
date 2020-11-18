@@ -7,14 +7,18 @@
 import Vue from 'vue'
 import App from './App.vue'
 import createRoutes from './createRoutes'
+import createStore from './createStore'
 
 export default () => {
   const router = createRoutes()
+  const store = createStore()
+
   const app = new Vue({
     el: '#app',
     router,
+    store,
     render: h => h(App)
   })
 
-  return { app, router }
+  return { app, router, store }
 }

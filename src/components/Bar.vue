@@ -5,11 +5,14 @@
  * @Descripttion: 
 -->
 <template>
-  <div style="color: red;" @click="handleClickBar">Bar.vue</div>
+  <div style="color: red;" @click="handleClickBar">Bar.vue || {{$store.state.name}} == {{$store.state.age}}</div>
 </template>
 
 <script>
 export default {
+  asyncData(store) {
+    return store.dispatch('changeAll')
+  },
   methods: {
     handleClickBar () { alert('bar') }
   }
